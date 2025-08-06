@@ -1,0 +1,155 @@
+// RegistrationPage.jsx
+import React, { useState } from "react";
+
+const BACKGROUND_URL =
+  "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1200&q=80";
+const TRIDENT_ICON =
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Trident_icon.svg/128px-Trident_icon.svg.png";
+
+export default function RegistrationPage({ onRegister }) {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!email.match(/.+@.+\..+/)) {
+      setMessage("Please enter a valid email address.");
+      return;
+    }
+    setMessage("Welcome to Camp Half-Blood, demigod!");
+    if (onRegister) onRegister(email);
+  }
+
+  return (
+    <div
+      style={{
+        minHeight: "100vh",
+        width: "100vw",
+        background: `linear-gradient(rgba(44,62,80,0.7), rgba(52,152,219,0.5)), url(${BACKGROUND_URL}) center center/cover no-repeat`,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+        fontFamily: "'Cinzel', 'Open Sans', serif",
+      }}
+    >
+      {/* Lightning overlay */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "url('https://pngimg.com/uploads/lightning/lightning_PNG36.png') center center no-repeat",
+          opacity: 0.08,
+          pointerEvents: "none",
+          zIndex: 1,
+          animation: "lightning-flash 6s infinite",
+        }}
+      />
+      <style>
+        {`
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Open+Sans:wght@400;700&display=swap');
+        @keyframes lightning-flash {
+          0%, 100% { opacity: 0.08; }
+          45% { opacity: 0.18; }
+          50% { opacity: 0.35; }
+          55% { opacity: 0.18; }
+          60% { opacity: 0.08; }
+        }
+        `}
+      </style>
+      <div
+        style={{
+          background: "rgba(255,255,255,0.92)",
+          borderRadius: 18,
+          boxShadow: "0 8px 32px rgba(44,62,80,0.25)",
+          padding: "2.5rem 2rem",
+          textAlign: "center",
+          border: "2px solid #e5c16c",
+          maxWidth: 350,
+          zIndex: 2,
+          position: "relative",
+        }}
+      >
+        <img
+          src={TRIDENT_ICON}
+          alt="Trident Icon"
+          style={{ width: 64, marginBottom: 16 }}
+        />
+        <h2
+          style={{
+            fontFamily: "'Cinzel', serif",
+            color: "#2c3e50",
+            marginBottom: 8,
+          }}
+        >
+          Welcome, Future Demigod!
+        </h2>
+        <p style={{ color: "#23395d", marginBottom: 24 }}>
+          Register to enter the hidden world of Camp Half-Blood.
+        </p>
+        <form onSubmit={handleSubmit}>
+          <div style={{ marginBottom: 16, textAlign: "left" }}>
+            <label
+              htmlFor="email"
+              style={{
+                fontWeight: "bold",
+                color: "#2c3e50",
+                fontFamily: "'Open Sans', sans-serif",
+              }}
+            >
+              Email Address:
+            </label>
+            <input
+              type="email"
+              id="email"
+              placeholder="your.name@olympus.com"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={{
+                width: "100%",
+                padding: "0.5rem",
+                borderRadius: 6,
+                border: "1px solid #e5c16c",
+                marginTop: 6,
+                fontSize: 16,
+                fontFamily: "'Open Sans', sans-serif",
+              }}
+            />
+          </div>
+          <button
+            type="submit"
+            style={{
+              background:
+                "linear-gradient(90deg, #e5c16c 60%, #f7e7b4 100%)",
+              color: "#23395d",
+              border: "none",
+              borderRadius: 8,
+              padding: "0.75rem 1.5rem",
+              fontWeight: "bold",
+              fontFamily: "'Cinzel', serif",
+              boxShadow: "0 2px 8px rgba(44,62,80,0.1)",
+              transition: "background 0.2s, transform 0.2s",
+              cursor: "pointer",
+              fontSize: 18,
+              marginTop: 8,
+            }}
+          >
+            Enter Camp Half-Blood
+          </button>
+          <p
+            style={{
+              color: message.startsWith("Welcome") ? "#27ae60" : "#c0392b",
+              marginTop: 16,
+              minHeight: 24,
+              fontWeight: "bold",
+            }}
+          >
+            {message}
+          </p>
+        </form>
+      </div>
+    </div>
+  );
+}

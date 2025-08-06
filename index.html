@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percy Jackson: Demigod Directory</title>
+  n  <!-- Link to Google Fonts for themed typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Link to your Web App Manifest for PWA features -->
+    <link rel="manifest" href="manifest.json">
+    <!-- Apple Touch Icon for iOS home screen icon -->
+    <link rel="apple-touch-icon" href="/images/pjo-icon-192.png">
+    <meta name="theme-color" content="#2c3e50"> <!-- Theme color for browser UI -->
+</head>
+<body>
+
+    <!-- Registration Page (Mount Olympus / Empire State Building Theme) -->
+    <section id="registration" class="content-section active registration-page">
+        <div class="registration-overlay">
+            <div class="registration-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Trident_icon.svg/128px-Trident_icon.svg.png" alt="Trident Icon" class="site-icon-large">
+                <h2>Welcome, Future Demigod!</h2>
+                <p>Register to enter the hidden world of Camp Half-Blood.</p>
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" placeholder="your.name@olympus.com" required>
+                    </div>
+                    <button type="submit" class="cta-button">Enter Camp Half-Blood</button>
+                    <p id="registrationMessage" class="message"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main App Interface (Hidden until registration) -->
+    <div class="main-app-container hidden">
+        <header class="main-header">
+            <button class="hamburger-menu" aria-label="Open Navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="logo">
+                <img src="data:image/jpeg;base64,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" alt="Trident Icon" class="site-icon">
+                <h1>Demigod Directory</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#dashboard" data-section="dashboard" class="nav-link active"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="#camphalfblood" data-section="camphalfblood" class="nav-link"><i class="fas fa-campground"></i> Camp Half-Blood</a></li>
+                    <li><a href="#questboard" data-section="questboard" class="nav-link"><i class="fas fa-scroll"></i> Quest Board</a></li>
+                    <li><a href="#irismessage" data-section="irismessage" class="nav-link"><i class="fas fa-envelope-open-text"></i> Iris Message</a></li>
+                    <li><a href="#mythipedia" data-section="mythipedia" class="nav-link"><i class="fas fa-book-open"></i> Mythopedia</a></li>
+                    <li><a href="#campmap" data-section="campmap" class="nav-link"><i class="fas fa-map-marked-alt"></i> Camp Map</a></li>
+                    <li><a href="#oraclecave" data-section="oraclecave" class="nav-link"><i class="fas fa-crystal-ball"></i> Oracle Cave</a></li>
+                    <li><a href="#arena" data-section="arena" class="nav-link"><i class="fas fa-fist-raised"></i> Arena</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="content-sections">
+            <!-- Dashboard Section (The main icon page) -->
+            <section id="dashboard" class="content-section active">
+    <div class="section-header">
+        <h2>Your Demigod Device</h2>
+        <p>Tap an icon to access your demigod powers and resources!</p>
+    </div>
+    <div class="app-grid">
+        <div class="app-icon" data-action="camphalfblood">
+            <i class="fas fa-campground"></i>
+            <span class="app-label">Camp Half-Blood</span>
+        </div>
+        <div class="app-icon" data-action="questboard">
+            <i class="fas fa-scroll"></i>
+            <span class="app-label">Quest Board</span>
+        </div>
+        <div class="app-icon" data-action="irismessage">
+            <i class="fas fa-envelope-open-text"></i>
+            <span class="app-label">Iris Message</span>
+        </div>
+        <div class="app-icon" data-action="mythipedia">
+            <i class="fas fa-book-open"></i>
+            <span class="app-label">Mythopedia</span>
+        </div>
+        <div class="app-icon" data-action="campmap">
+            <i class="fas fa-map-marked-alt"></i>
+            <span class="app-label">Camp Map</span>
+        </div>
+        <div class="app-icon" data-action="oraclecave">
+            <i class="fas fa-crystal-ball"></i>
+            <span class="app-label">Oracle Cave</span>
+        </div>
+        <div class="app-icon" data-action="arena">
+            <i class="fas fa-fist-raised"></i>
+            <span class="app-label">Arena</span>
+        </div>
+        <!-- More apps can be added here -->
+    </div>
+    <div class="notification-bar">
+        <span>⚡ Olympus Net</span>
+        <span>📍 GPS Active</span>
+        <span id="phone-time"></span>
+    </div>
+</section>
+
+            <!-- Camp Half-Blood Section (Godly Parent Quiz) -->
+            <section id="camphalfblood" class="content-section">
+                <div class="section-header">
+                    <h2>Camp Half-Blood: Your Identity</h2>
+                    <p>Discover your godly parent and cabin number!</p>
+                </div>
+                <div class="quiz-container">
+                    <div id="quizStartScreen">
+                        <p>Ready to uncover your destiny?</p>
+                        <button id="startQuizButton" class="cta-button">Begin Your Trial</button>
+                    </div>
+                    <div id="quizQuestionScreen" class="hidden">
+                        <h3 id="questionText"></h3>
+                        <div class="options-container" id="optionsContainer"></div>
+                        <button id="nextQuestionButton" class="cta-button hidden">Next Question</button>
+                    </div>
+                    <div id="quizResultScreen" class="hidden">
+                        <h3>Your Godly Parent Is...</h3>
+                        <p id="resultParent"></p>
+                        <p id="resultDescription"></p>
+                        <p id="cabinNumber"></p>
+                        <div class="result-image-container">
+                            <img id="resultImage" src="" alt="Godly Parent Image">
+                        </div>
+                        <button id="restartQuizButton" class="cta-button">Retake Quiz</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quest Board Section (Assignment Tracker) -->
+            <section id="questboard" class="content-section">
+                <div class="section-header">
+                    <h2>Quest Board: Your Assignments</h2>
+                    <p>Track your demigod duties and epic quests.</p>
+                </div>
+                <div class="quest-board-container">
+                    <div class="quest-input-area">
+                        <input type="text" id="newQuestInput" placeholder="Enter a new quest...">
+                        <button id="addQuestButton" class="cta-button small-button">Add Quest</button>
+                    </div>
+                    <ul id="questList" class="quest-list">
+                        <!-- Quests will be loaded here -->
+                    </ul>
+                    <p id="noQuestsMessage" class="message hidden">No active quests. Time for some R&R!</p>
+                </div>
+            </section>
+
+            <!-- Iris Message Section (Chat) -->
+            <section id="irismessage" class="content-section">
+                <div class="section-header">
+                    <h2>Iris Message: Communicate with Demigods</h2>
+                    <p>Send and receive messages across the mist!</p>
+                </div>
+                <div class="chat-container">
+                    <div id="chatMessages" class="chat-messages">
+                        <div class="message-bubble received">
+                            <p>Welcome to Iris Message! Type a message to start.</p>
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chatInput" placeholder="Send a message...">
+                        <button id="sendMessageButton" class="cta-button small-button">Send</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mythopedia Section (Learning Resource) -->
+            <section id="mythipedia" class="content-section">
+                <div class="section-header">
+                    <h2>Mythopedia: Ancient Wisdom</h2>
+                    <p>Your comprehensive guide to Greek gods, monsters, and lore.</p>
+                </div>
+                <div class="mythipedia-content">
+                    <div class="mythipedia-category">
+                        <h3>Gods & Goddesses</h3>
+                        <ul>
+                            <li><strong>Zeus:</strong> King of the Gods, God of the Sky, Lightning, and Thunder.</li>
+                            <li><strong>Poseidon:</strong> God of the Sea, Earthquakes, and Horses.</li>
+                            <li><strong>Hades:</strong> God of the Underworld and Riches.</li>
+                            <li><strong>Athena:</strong> Goddess of Wisdom, Warfare, and Handicrafts.</li>
+                            <li><strong>Apollo:</strong> God of Music, Poetry, Light, Healing, and Archery.</li>
+                            <li><strong>Artemis:</strong> Goddess of the Hunt, Wilderness, and Childbirth.</li>
+                            <li><strong>Ares:</strong> God of War.</li>
+                            <li><strong>Aphrodite:</strong> Goddess of Love, Beauty, Pleasure, and Procreation.</li>
+                            <li><strong>Hephaestus:</strong> God of Fire, Metallurgy, and Craftsmen.</li>
+                            <li><strong>Hermes:</strong> Messenger of the Gods, God of Travel, Trade, and Thieves.</li>
+                            <li><strong>Dionysus:</strong> God of Wine, Festivity, and Ecstasy.</li>
+                            <li><strong>Demeter:</strong> Goddess of Agriculture and the Harvest.</li>
+                        </ul>
+                    </div>
+                    <div class="mythipedia-category">
+                        <h3>Monsters & Creatures</h3>
+                        <ul>
+                            <li><strong>Minotaur:</strong> Half-man, half-bull.</li>
+                            <li><strong>Hydra:</strong> Multi-headed serpent.</li>
+                            <li><strong>Medusa:</strong> Gorgon with snake hair, turns to stone.</li>
+                            <li><strong>Cyclops:</strong> One-eyed giants.</li>
+                            <li><strong>Hellhounds:</strong> Underworld dogs.</li>
+                        </ul>
+                    </div>
+                    <div class="mythipedia-category">
+                        <h3>Artifacts & Locations</h3>
+                        <ul>
+                            <li><strong>Riptide:</strong> Percy's sword, disguised as a pen.</li>
+                            <li><strong>Master Bolt:</strong> Zeus's lightning bolt.</li>
+                            <li><strong>Camp Half-Blood:</strong> Training ground for demigods.</li>
+                            <li><strong>Mount Olympus:</strong> Home of the gods.</li>
+                            <li><strong>Underworld:</strong> Realm of the dead.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Camp Map Section (Geolocation) -->
+            <section id="campmap" class="content-section">
+                <div class="section-header">
+                    <h2>Camp Map: Navigate Your Path</h2>
+                    <p>Find your way around Camp Half-Blood and track your location.</p>
+                </div>
+                <div class="map-container">
+                    <img src="https://riordan.fandom.com/wiki/Camp_Half-Blood?file=CampHalf-BloodArch.png" alt="Conceptual Camp Half-Blood Map" class="camp-map-image">
+                    <div class="location-display">
+                        <h3>Your Current Location:</h3>
+                        <p id="currentLocation">Fetching location...</p>
+                        <button id="refreshLocationButton" class="cta-button small-button">Refresh Location</button>
+                    </div>
+                    <div class="class-distance-display">
+                        <h3>Next Class: Sword Fighting at Arena</h3>
+                        <p id="distanceToClass">Calculating distance...</p>
+                        <p id="directionToClass"></p>
+                    </div>
+                    <p class="map-disclaimer">*(Note: Location data is simulated within Camp Half-Blood for demonstration. Actual GPS depends on your device and browser permissions.)*</p>
+                </div>
+            </section>
+
+            <!-- Oracle Cave Section (AI Assistant) -->
+            <section id="oraclecave" class="content-section">
+                <div class="section-header">
+                    <h2>Oracle Cave: Seek Wisdom</h2>
+                    <p>Consult the Oracle for guidance on your demigod journey.</p>
+                </div>
+                <div class="oracle-container">
+                    <div id="oracleConversation" class="oracle-conversation">
+                        <div class="oracle-message received">
+                            <p>Greetings, demigod. Ask your question, and the mist will reveal its secrets.</p>
+                        </div>
+                    </div>
+                    <div class="oracle-input-area">
+                        <input type="text" id="oracleInput" placeholder="Ask your question...">
+                        <button id="askOracleButton" class="cta-button small-button">Ask Oracle</button>
+                    </div>
+                    <p id="oracleLoading" class="message hidden">The Oracle is contemplating...</p>
+                </div>
+            </section>
+
+            <!-- Arena Section (Combat Training / Gamified Quiz) -->
+            <section id="arena" class="content-section">
+    <div class="section-header">
+        <h2>Labyrinth Challenge</h2>
+        <p>Navigate the legendary Labyrinth, battle monsters, and solve puzzles to escape!</p>
+    </div>
+    <div class="labyrinth-dashboard">
+        <div class="dashboard-item">
+            <h3>Progress: <span id="labyrinthProgress">Entrance</span></h3>
+        </div>
+        <div class="dashboard-item">
+            <h3>Health: <span id="labyrinthHealth">100</span></h3>
+        </div>
+        <div class="dashboard-item">
+            <h3>Inventory: <span id="labyrinthInventory">None</span></h3>
+        </div>
+    </div>
+    <div class="labyrinth-challenge">
+        <div id="labyrinthScene">
+            <h3 id="sceneTitle">You stand at the entrance of the Labyrinth.</h3>
+            <p id="sceneDescription">Choose your path and prepare for adventure!</p>
+            <div id="sceneOptions" class="labyrinth-options">
+                <button class="cta-button" onclick="choosePath('left')">Go Left</button>
+                <button class="cta-button" onclick="choosePath('right')">Go Right</button>
+                <button class="cta-button" onclick="choosePath('forward')">Go Forward</button>
+            </div>
+        </div>
+        <div id="labyrinthPuzzle" class="hidden">
+            <h3>Puzzle Challenge</h3>
+            <p id="puzzleQuestion">Solve the riddle to open the door:</p>
+            <div id="puzzleOptions"></div>
+            <button id="submitPuzzleAnswer" class="cta-button">Submit Answer</button>
+            <p id="puzzleFeedback" class="message"></p>
+        </div>
+        <div id="labyrinthBattle" class="hidden">
+            <h3>Monster Encounter!</h3>
+            <img id="monsterImage" src="https://placehold.co/200x200/cccccc/000000?text=Monster" alt="Monster" class="monster-image">
+            <p id="battleDescription">A monster blocks your path!</p>
+            <div id="battleOptions">
+                <button class="cta-button" onclick="fightMonster()">Fight</button>
+                <button class="cta-button" onclick="runAway()">Run Away</button>
+            </div>
+            <p id="battleFeedback" class="message"></p>
+        </div>
+        <div id="labyrinthVictory" class="hidden">
+            <h3>Victory!</h3>
+            <p>You have escaped the Labyrinth and earned your glory!</p>
+            <button id="restartLabyrinth" class="cta-button">Play Again</button>
+        </div>
+    </div>
+</section>
+
+        </main>
+
+        <footer class="main-footer">
+            <p>&copy; 2025 Demigod Directory. Unofficial Fan Project.</p>
+            <div class="footer-social">
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </footer>
+
+        <button id="backToTopBtn" class="back-to-top-btn" aria-label="Back to top">↑</button>
+    </div>
+
+    <!-- Link to your JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
