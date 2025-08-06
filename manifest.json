@@ -1,0 +1,22 @@
+{
+    "name": "Percy Jackson: Demigod Directory",
+    "short_name": "PJO Directory",
+    "description": "An unofficial interactive fan guide to the world of Percy Jackson.",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#e0f2f7",
+    "theme_color": "#2c3e50",
+    "icons": [
+        {
+            "src": "images/pjo-icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/pjo-icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "orientation": "portrait"
+}
